@@ -1,0 +1,1 @@
+Github Pages link: https://przemekphob.github.io/zadanie-12.5/
