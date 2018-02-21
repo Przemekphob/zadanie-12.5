@@ -1,2 +1,9 @@
+body { background-color: #3498db; margin: 0; color: #FFF; }
 
-/*# sourceMappingURL=style.css.map */
+main { display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; -ms-flex-align: center; align-items: center; -ms-flex-direction: column; flex-direction: column; }
+
+header { padding: 75px; }
+
+button { border: none; padding: 10px; background-color: #f1c40f; color: #FFF; cursor: pointer; }
+
+div > a { text-decoration: none; }

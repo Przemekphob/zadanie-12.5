@@ -1,0 +1,30 @@
+body {
+	background-color: #3498db;
+	margin: 0;
+	color: #FFF;
+}
+
+main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+header {
+	padding: 75px;
+}
+
+button {
+	border: none;
+	padding: 10px;
+	background-color: #f1c40f;
+	color: #FFF;
+	cursor: pointer;
+}
+
+div {
+	>a {
+		text-decoration: none;
+	}
+}
