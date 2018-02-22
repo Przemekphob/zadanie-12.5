@@ -28,6 +28,15 @@ var prefix = "https://cors-anywhere.herokuapp.com/";
 function getQuote() {
     $.getJSON(prefix + quoteUrl, createTweet);
     $.ajaxSetup({ cache: false });
+		$(document).ajaxStart(function(){
+		    $(".trigger").css("visibility", "hidden");
+		    $('.loader').show();
+		});
+
+		$(document).ajaxComplete(function(){
+			$('.loader').hide();
+		    $(".trigger").css("visibility", "visible");
+		});	
 }
 
 function createTweet(input) {
@@ -49,8 +58,9 @@ function createTweet(input) {
 	    $('.author').text("Author: " + quoteAuthor);
 	    $('.tweet').attr('href', tweet);
 	}
-
 }
+
+
 
 $(document).ready(function() {
     getQuote();
