@@ -26,20 +26,25 @@ var quoteUrl = "https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&fi
 var prefix = "https://cors-anywhere.herokuapp.com/";
 
 function getQuote() {
-    $.getJSON(prefix + quoteUrl, createTweet);
-    $.ajaxSetup({ cache: false });
-		$(document).ajaxStart(function(){
-		    $(".trigger").css("visibility", "hidden");
-		    $('.loader').show();
-		});
+	showLoad();
+    $.getJSON(prefix + quoteUrl).done(createTweet).fail(function(data) {
+    	hideLoad();
+    	alert('error');
+    }); 
+}
 
-		$(document).ajaxComplete(function(){
-			$('.loader').hide();
-		    $(".trigger").css("visibility", "visible");
-		});	
+function showLoad() {
+	$(".trigger").hide();
+	$(".loader").show();
+}
+
+function hideLoad() {
+	$(".loader").hide();
+	$(".trigger").show();
 }
 
 function createTweet(input) {
+	hideLoad();
     var data = input[0];
 
     var quoteText = $(data.content).text().trim();
@@ -51,6 +56,7 @@ function createTweet(input) {
 
 	var tweetText = "Quote of the day - " + quoteText + " Author: " + quoteAuthor;    
 	if (tweetText.length > 140) {
+		console.log('higher than 140');
 	    getQuote();
 	} else {
 	    var tweet = tweetLink + encodeURIComponent(tweetText);
@@ -60,9 +66,8 @@ function createTweet(input) {
 	}
 }
 
-
-
 $(document).ready(function() {
+	$.ajaxSetup({ cache: false });
     getQuote();
     $('.trigger').click(function() {
         getQuote();
